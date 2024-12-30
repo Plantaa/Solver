@@ -4,7 +4,8 @@
 
 #include "deck.h"
 
-int main() {
+int main()
+{
     srand((unsigned int)time(0));
 
     Deck originalDeck, shuffledDeck;
@@ -37,6 +38,6 @@ int main() {
     deckFisherYatesShuffleMany(&shuffledDeck, 5);
     printf("\nAfter 5 Fisher-Yates shuffles: \n");
     deckPrint(&shuffledDeck);
-    
+
     return 0;
 }

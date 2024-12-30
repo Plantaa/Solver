@@ -4,10 +4,11 @@
 #include "rank.h"
 #include "suit.h"
 
-typedef struct card {
+typedef struct card
+{
     Rank rank;
     Suit suit;
-}Card;
+} Card;
 
 void cardPrint(Card card);
 

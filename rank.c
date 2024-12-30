@@ -3,54 +3,6 @@
 
 #include "rank.h"
 
-void rankPrint(Rank rank)
-{
-    switch (rank)
-    {
-    case ACE:
-        printf("ACE");
-        break;
-    case KING:
-        printf("KING");
-        break;
-    case QUEEN:
-        printf("QUEEN");
-        break;
-    case JACK:
-        printf("JACK");
-        break;
-    case TEN:
-        printf("TEN");
-        break;
-    case NINE:
-        printf("NINE");
-        break;
-    case EIGHT:
-        printf("EIGHT");
-        break;
-    case SEVEN:
-        printf("SEVEN");
-        break;
-    case SIX:
-        printf("SIX");
-        break;
-    case FIVE:
-        printf("FIVE");
-        break;
-    case FOUR:
-        printf("FOUR");
-        break;
-    case TRHEE:
-        printf("TRHEE");
-        break;
-    case TWO:
-        printf("TWO");
-        break;
-    default:
-        break;
-    }
-}
-
 char* rankString(Rank rank)
 {
     switch (rank)

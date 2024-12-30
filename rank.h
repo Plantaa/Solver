@@ -18,7 +18,6 @@ typedef enum rank {
     ONE
 }Rank;
 
-void rankPrint(Rank rank);
 char* rankString(Rank rank);
 
 #endif

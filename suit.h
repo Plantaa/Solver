@@ -8,7 +8,6 @@ typedef enum suit {
     DIAMONDS
 }Suit;
 
-void suitPrint(Suit suit);
 char* suitString(Suit suit);
 
 #endif

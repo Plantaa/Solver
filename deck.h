@@ -7,9 +7,10 @@
 #define MAX_SUIT 4
 #define MAX_RANK 13
 
-typedef struct deck {
+typedef struct deck
+{
     Card cards[MAX_CARDS];
-}Deck;
+} Deck;
 
 void deckInit(Deck *deck);
 void deckPrint(Deck *deck);
