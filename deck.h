@@ -13,8 +13,8 @@ typedef struct deck {
 
 void deckInit(Deck *deck);
 void deckPrint(Deck *deck);
-void deckShuffle(Deck *deck);
-void deckShuffleMany(Deck *deck, int shuffleAmount);
+void deckFisherYatesShuffle(Deck *deck);
+void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount);
 void deckRiffleShuffle(Deck *deck);
 void deckRiffleShuffleMany(Deck *deck, int shuffleAmount);
 void deckOverhandShuffle(Deck *deck);

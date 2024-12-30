@@ -24,7 +24,7 @@ void deckPrint(Deck *deck)
         cardPrint(deck->cards[i]);
 }
 
-void deckShuffle(Deck *deck)
+void deckFisherYatesShuffle(Deck *deck)
 {
     for (int i = MAX_CARDS - 1; i > 0; i--)
     {
@@ -36,10 +36,10 @@ void deckShuffle(Deck *deck)
     }
 }
 
-void deckShuffleMany(Deck *deck, int shuffleAmount)
+void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount)
 {
     for (int i = 0; i < shuffleAmount; i++)
-        deckShuffle(deck);
+        deckFisherYatesShuffle(deck);
 }
 
 void deckRiffleShuffle(Deck *deck)

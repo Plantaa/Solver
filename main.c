@@ -11,31 +11,31 @@ int main() {
     deckInit(&originalDeck);
     deckInit(&shuffledDeck);
 
-    printf("Before shuffle: \n");
+    printf("\nBefore shuffle: \n");
     deckPrint(&originalDeck);
 
     deckOverhandShuffle(&shuffledDeck);
-    printf("After overhand shuffle: \n");
+    printf("\nAfter overhand shuffle: \n");
     deckPrint(&shuffledDeck);
 
     deckOverheadShuffleMany(&shuffledDeck, 12);
-    printf("After 12 overhand shuffles: \n");
+    printf("\nAfter 12 overhand shuffles: \n");
     deckPrint(&shuffledDeck);
 
     deckRiffleShuffle(&shuffledDeck);
-    printf("After riffle shuffle: \n");
+    printf("\nAfter riffle shuffle: \n");
     deckPrint(&shuffledDeck);
 
     deckRiffleShuffleMany(&shuffledDeck, 7);
-    printf("After 7 riffle shuffles: \n");
+    printf("\nAfter 7 riffle shuffles: \n");
     deckPrint(&shuffledDeck);
 
-    deckShuffle(&shuffledDeck);
-    printf("After shuffle: \n");
+    deckFisherYatesShuffle(&shuffledDeck);
+    printf("\nAfter Fisher-Yates shuffle: \n");
     deckPrint(&shuffledDeck);
 
-    deckShuffleMany(&shuffledDeck, 5);
-    printf("After 5 passes: \n");
+    deckFisherYatesShuffleMany(&shuffledDeck, 5);
+    printf("\nAfter 5 Fisher-Yates shuffles: \n");
     deckPrint(&shuffledDeck);
     
     return 0;
