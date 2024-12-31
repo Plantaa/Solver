@@ -20,5 +20,7 @@ void deckRiffleShuffle(Deck *deck);
 void deckRiffleShuffleMany(Deck *deck, int shuffleAmount);
 void deckOverhandShuffle(Deck *deck);
 void deckOverheadShuffleMany(Deck *deck, int shuffleAmount);
+double deckCalculateDisplacement(Deck *original, Deck *shuffled);
+int deckFindIndex(Deck *deck, Card card);
 
 #endif

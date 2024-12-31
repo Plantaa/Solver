@@ -12,32 +12,34 @@ int main()
     deckInit(&originalDeck);
     deckInit(&shuffledDeck);
 
-    printf("\nBefore shuffle: \n");
-    deckPrint(&originalDeck);
-
-    deckOverhandShuffle(&shuffledDeck);
-    printf("\nAfter overhand shuffle: \n");
-    deckPrint(&shuffledDeck);
-
-    deckOverheadShuffleMany(&shuffledDeck, 12);
-    printf("\nAfter 12 overhand shuffles: \n");
-    deckPrint(&shuffledDeck);
-
-    deckRiffleShuffle(&shuffledDeck);
-    printf("\nAfter riffle shuffle: \n");
-    deckPrint(&shuffledDeck);
-
-    deckRiffleShuffleMany(&shuffledDeck, 7);
-    printf("\nAfter 7 riffle shuffles: \n");
-    deckPrint(&shuffledDeck);
-
     deckFisherYatesShuffle(&shuffledDeck);
-    printf("\nAfter Fisher-Yates shuffle: \n");
-    deckPrint(&shuffledDeck);
+    double displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement after single Fisher-Yates shuffle: %f\n", displacement);
 
+    deckInit(&shuffledDeck);
     deckFisherYatesShuffleMany(&shuffledDeck, 5);
-    printf("\nAfter 5 Fisher-Yates shuffles: \n");
-    deckPrint(&shuffledDeck);
+    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement after 5 Fisher-Yates shuffles: %f\n", displacement);
+
+    deckInit(&shuffledDeck);
+    deckOverhandShuffle(&shuffledDeck);
+    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement after single overhand shuffle: %f\n", displacement);
+
+    deckInit(&shuffledDeck);
+    deckOverheadShuffleMany(&shuffledDeck, 12);
+    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement after 12 overhand shuffles: %f\n", displacement);
+
+    deckInit(&shuffledDeck);
+    deckRiffleShuffle(&shuffledDeck);
+    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement for single riffle shuffle: %f\n", displacement);
+
+    deckInit(&shuffledDeck);
+    deckRiffleShuffleMany(&shuffledDeck, 7);
+    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
+    printf("Dispacement for 7 riffle shuffles: %f\n", displacement);
 
     return 0;
 }
