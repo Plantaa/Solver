@@ -21,6 +21,10 @@ void deckRiffleShuffleMany(Deck *deck, int shuffleAmount);
 void deckOverhandShuffle(Deck *deck);
 void deckOverheadShuffleMany(Deck *deck, int shuffleAmount);
 double deckCalculateDisplacement(Deck *original, Deck *shuffled);
+int deckLongestOrderedRun(Deck *original, Deck *shuffled);
+int deckCountAdjacentSuits(Deck *shuffled);
+int deckCountPreservedPairs(Deck *original, Deck *shuffled);
+void deckShufflingSumary(Deck *original, Deck *shuffled);
 int deckFindIndex(Deck *deck, Card card);
 
 #endif

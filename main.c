@@ -13,33 +13,36 @@ int main()
     deckInit(&shuffledDeck);
 
     deckFisherYatesShuffle(&shuffledDeck);
-    double displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement after single Fisher-Yates shuffle: %f\n", displacement);
+    printf("After single Fisher-Yates shuffle: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckFisherYatesShuffle(&shuffledDeck);
+    printf("After second Fisher-Yates shuffle: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
     deckFisherYatesShuffleMany(&shuffledDeck, 5);
-    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement after 5 Fisher-Yates shuffles: %f\n", displacement);
+    printf("After 5 Fisher-Yates shuffles: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
     deckOverhandShuffle(&shuffledDeck);
-    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement after single overhand shuffle: %f\n", displacement);
+    printf("After single overhand shuffle: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
     deckOverheadShuffleMany(&shuffledDeck, 12);
-    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement after 12 overhand shuffles: %f\n", displacement);
+    printf("After 12 overhand shuffles: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
     deckRiffleShuffle(&shuffledDeck);
-    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement for single riffle shuffle: %f\n", displacement);
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
     deckRiffleShuffleMany(&shuffledDeck, 7);
-    displacement = deckCalculateDisplacement(&originalDeck, &shuffledDeck);
-    printf("Dispacement for 7 riffle shuffles: %f\n", displacement);
+    printf("After 7 riffle shuffles: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     return 0;
 }

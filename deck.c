@@ -104,3 +104,44 @@ int deckFindIndex(Deck *deck, Card card) {
             return i;
     return -1;
 }
+
+int deckLongestOrderedRun(Deck *original, Deck *shuffled) {
+    int longestRun = 0;
+    int currentRun = 0;
+
+    for (int i = 0; i < MAX_CARDS; i++) {
+        if (cardIsEqual(original->cards[i], shuffled->cards[i])) {
+            currentRun++;
+            if (currentRun > longestRun)
+                longestRun = currentRun;
+        } else
+            currentRun = 0;
+    }
+    return longestRun;
+}
+
+int deckCountAdjacentSuits(Deck *shuffled) {
+    int adjacentCount = 0;
+    for (int i = 0; i < MAX_CARDS - 1; i++)
+        if (shuffled->cards[i].suit == shuffled->cards[i+1].suit)
+            adjacentCount++;
+    return adjacentCount;
+}
+
+int deckCountPreservedPairs(Deck *original, Deck *shuffled) {
+    int preservedPairs = 0;
+    for (int i = 0; i < MAX_CARDS - 1; i++)
+        for (int j = i + 1; j < MAX_CARDS; j++)
+            if (deckFindIndex(shuffled, original->cards[i]) < deckFindIndex(shuffled, original->cards[j]))
+                    preservedPairs++;
+    return preservedPairs;
+} 
+
+void deckShufflingSumary(Deck *original, Deck *shuffled)
+{
+    printf("Shuffling summary:\n");
+    printf("\tDispacement: %f\n", deckCalculateDisplacement(original, shuffled));
+    printf("\tLongest ordered run: %d\n", deckLongestOrderedRun(original, shuffled));
+    printf("\tAdjacent cards from the same suit: %d\n", deckCountAdjacentSuits(shuffled));
+    printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
+}
