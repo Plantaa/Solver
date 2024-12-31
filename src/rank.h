@@ -21,6 +21,7 @@ typedef enum rank
 } Rank;
 
 char *rankString(Rank rank);
+bool rankIsEqual(Rank expected, Rank actual);
 bool rankIsLesser(Rank expected, Rank actual);
 bool rankIsGreater(Rank expected, Rank actual);
 

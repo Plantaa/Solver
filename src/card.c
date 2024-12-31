@@ -10,7 +10,7 @@ void cardPrint(Card card)
 
 bool cardIsEqual(Card expected, Card actual)
 {
-    return expected.rank == actual.rank && expected.suit == actual.suit;
+    return rankIsEqual(expected.rank, actual.rank) && suitIsEqual(expected.suit, actual.suit);
 }
 
 bool cardIsLesser(Card expected, Card actual)

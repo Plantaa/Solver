@@ -13,10 +13,10 @@ void deckInit(Deck *const deck)
                 .suit = suit};
 }
 
-void deckInitWithStrategy(Deck *const deck, void (*shuffleStrategy)(Deck *, int))
+void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy)
 {
     if (NULL == shuffleStrategy)
-        deck->shuffleStrategy = deckOverheadShuffleMany;
+        deck->shuffleStrategy = fisherYatesShuffleMany;
     else
         deck->shuffleStrategy = shuffleStrategy;
     deckInit(deck);
@@ -26,77 +26,6 @@ void deckPrint(const Deck *const deck)
 {
     for (int i = 0; i < MAX_CARDS; i++)
         cardPrint(deck->cards[i]);
-}
-
-void deckFisherYatesShuffle(Deck *const deck)
-{
-    for (int i = MAX_CARDS - 1; i > 0; i--)
-    {
-        int j = rand() % (i + 1);
-        Card temp = deck->cards[i];
-        deck->cards[i] = deck->cards[j];
-        deck->cards[j] = temp;
-    }
-}
-
-void deckFisherYatesShuffleMany(Deck *const deck, int shuffleAmount)
-{
-    for (int i = 0; i < shuffleAmount; i++)
-        deckFisherYatesShuffle(deck);
-}
-
-void deckRiffleShuffle(Deck *const deck)
-{
-    Deck half1, half2;
-    int halfSize = MAX_CARDS / 2;
-
-    for (int i = 0; i < halfSize; i++)
-    {
-        half1.cards[i] = deck->cards[i];
-        half2.cards[i] = deck->cards[halfSize + i];
-    }
-    int i = 0, j = 0, k = 0;
-    while (i < halfSize && j < halfSize)
-    {
-        if (rand() % 2 == 0 && i < halfSize)
-            deck->cards[k++] = half1.cards[i++];
-        else
-            deck->cards[k++] = half2.cards[j++];
-    }
-    while (i < halfSize)
-        deck->cards[k++] = half1.cards[i++];
-    while (j < halfSize)
-        deck->cards[k++] = half2.cards[j++];
-}
-
-void deckRiffleShuffleMany(Deck *const deck, int shuffleAmount)
-{
-    for (int i = 0; i < shuffleAmount; i++)
-        deckRiffleShuffle(deck);
-}
-
-void deckOverhandShuffle(Deck *const deck)
-{
-    Deck newDeck;
-    int newDeckIndex = 0;
-
-    while (newDeckIndex < MAX_CARDS)
-    {
-        int chunkSize = (rand() % 5) + 1;
-        if (newDeckIndex + chunkSize > MAX_CARDS)
-            chunkSize = MAX_CARDS - newDeckIndex;
-        for (int i = 0; i < chunkSize; i++)
-            newDeck.cards[newDeckIndex + i] = deck->cards[MAX_CARDS - newDeckIndex - chunkSize + i];
-        newDeckIndex += chunkSize;
-    }
-    for (int i = 0; i < MAX_CARDS; i++)
-        deck->cards[i] = newDeck.cards[i];
-}
-
-void deckOverheadShuffleMany(Deck *const deck, int shuffleAmount)
-{
-    for (int i = 0; i < shuffleAmount; i++)
-        deckOverhandShuffle(deck);
 }
 
 double deckCalculateDisplacement(const Deck *const original, const Deck *const shuffled)
@@ -162,10 +91,10 @@ void deckShufflingSumary(const Deck *const original, const Deck *const shuffled)
     printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
 }
 
-void deckShuffle(Deck *const deck, int shuffleAmount)
+void deckShuffle(Deck *const deck, int iterations)
 {
     if (deck->shuffleStrategy != NULL)
-        deck->shuffleStrategy(deck, shuffleAmount);
+        deck->shuffleStrategy(deck->cards, iterations);
     else
         printf("No shuffle strategy provided!\n");
 }
