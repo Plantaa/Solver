@@ -16,10 +16,6 @@ int main()
     printf("After single Fisher-Yates shuffle: \n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
-    deckFisherYatesShuffle(&shuffledDeck);
-    printf("After second Fisher-Yates shuffle: \n");
-    deckShufflingSumary(&originalDeck, &shuffledDeck);
-
     deckInit(&shuffledDeck);
     deckFisherYatesShuffleMany(&shuffledDeck, 5);
     printf("After 5 Fisher-Yates shuffles: \n");
