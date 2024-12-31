@@ -3,7 +3,7 @@
 
 #include "deck.h"
 
-void deckInit(Deck *deck)
+void deckInit(Deck *const deck)
 {
     int card = 0;
     for (Suit suit = 0; suit < MAX_SUIT; suit++)
@@ -13,7 +13,7 @@ void deckInit(Deck *deck)
                 .suit = suit};
 }
 
-void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int))
+void deckInitWithStrategy(Deck *const deck, void (*shuffleStrategy)(Deck *, int))
 {
     if (NULL == shuffleStrategy)
         deck->shuffleStrategy = deckOverheadShuffleMany;
@@ -22,13 +22,13 @@ void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int))
     deckInit(deck);
 }
 
-void deckPrint(Deck *deck)
+void deckPrint(const Deck *const deck)
 {
     for (int i = 0; i < MAX_CARDS; i++)
         cardPrint(deck->cards[i]);
 }
 
-void deckFisherYatesShuffle(Deck *deck)
+void deckFisherYatesShuffle(Deck *const deck)
 {
     for (int i = MAX_CARDS - 1; i > 0; i--)
     {
@@ -39,13 +39,13 @@ void deckFisherYatesShuffle(Deck *deck)
     }
 }
 
-void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount)
+void deckFisherYatesShuffleMany(Deck *const deck, int shuffleAmount)
 {
     for (int i = 0; i < shuffleAmount; i++)
         deckFisherYatesShuffle(deck);
 }
 
-void deckRiffleShuffle(Deck *deck)
+void deckRiffleShuffle(Deck *const deck)
 {
     Deck half1, half2;
     int halfSize = MAX_CARDS / 2;
@@ -69,13 +69,13 @@ void deckRiffleShuffle(Deck *deck)
         deck->cards[k++] = half2.cards[j++];
 }
 
-void deckRiffleShuffleMany(Deck *deck, int shuffleAmount)
+void deckRiffleShuffleMany(Deck *const deck, int shuffleAmount)
 {
     for (int i = 0; i < shuffleAmount; i++)
         deckRiffleShuffle(deck);
 }
 
-void deckOverhandShuffle(Deck *deck)
+void deckOverhandShuffle(Deck *const deck)
 {
     Deck newDeck;
     int newDeckIndex = 0;
@@ -93,13 +93,13 @@ void deckOverhandShuffle(Deck *deck)
         deck->cards[i] = newDeck.cards[i];
 }
 
-void deckOverheadShuffleMany(Deck *deck, int shuffleAmount)
+void deckOverheadShuffleMany(Deck *const deck, int shuffleAmount)
 {
     for (int i = 0; i < shuffleAmount; i++)
         deckOverhandShuffle(deck);
 }
 
-double deckCalculateDisplacement(Deck *original, Deck *shuffled)
+double deckCalculateDisplacement(const Deck *const original, const Deck *const shuffled)
 {
     double totalDisplacement = 0;
     for (int i = 0; i < MAX_CARDS; i++)
@@ -107,7 +107,7 @@ double deckCalculateDisplacement(Deck *original, Deck *shuffled)
     return totalDisplacement / MAX_CARDS;
 }
 
-int deckFindIndex(Deck *deck, Card card)
+int deckFindIndex(const Deck *const deck, Card card)
 {
     for (int i = 0; i < MAX_CARDS; i++)
         if (cardIsEqual(deck->cards[i], card))
@@ -115,7 +115,7 @@ int deckFindIndex(Deck *deck, Card card)
     return -1;
 }
 
-int deckLongestOrderedRun(Deck *original, Deck *shuffled)
+int deckLongestOrderedRun(const Deck *const original, const Deck *const shuffled)
 {
     int longestRun = 0;
     int currentRun = 0;
@@ -134,7 +134,7 @@ int deckLongestOrderedRun(Deck *original, Deck *shuffled)
     return longestRun;
 }
 
-int deckCountAdjacentSuits(Deck *shuffled)
+int deckCountAdjacentSuits(const Deck *const shuffled)
 {
     int adjacentCount = 0;
     for (int i = 0; i < MAX_CARDS - 1; i++)
@@ -143,7 +143,7 @@ int deckCountAdjacentSuits(Deck *shuffled)
     return adjacentCount;
 }
 
-int deckCountPreservedPairs(Deck *original, Deck *shuffled)
+int deckCountPreservedPairs(const Deck *const original, const Deck *const shuffled)
 {
     int preservedPairs = 0;
     for (int i = 0; i < MAX_CARDS - 1; i++)
@@ -153,7 +153,7 @@ int deckCountPreservedPairs(Deck *original, Deck *shuffled)
     return preservedPairs;
 }
 
-void deckShufflingSumary(Deck *original, Deck *shuffled)
+void deckShufflingSumary(const Deck *const original, const Deck *const shuffled)
 {
     printf("Shuffling summary:\n");
     printf("\tDispacement: %f\n", deckCalculateDisplacement(original, shuffled));
@@ -162,7 +162,7 @@ void deckShufflingSumary(Deck *original, Deck *shuffled)
     printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
 }
 
-void deckShuffle(Deck *deck, int shuffleAmount)
+void deckShuffle(Deck *const deck, int shuffleAmount)
 {
     if (deck->shuffleStrategy != NULL)
         deck->shuffleStrategy(deck, shuffleAmount);

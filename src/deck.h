@@ -10,24 +10,31 @@
 typedef struct deck
 {
     Card cards[MAX_CARDS];
-    void (*shuffleStrategy)(struct deck *deck, int shuffleAmount);
+    void (*shuffleStrategy)(struct deck *const deck, int shuffleAmount);
 } Deck;
 
-void deckInit(Deck *deck);
-void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int));
-void deckPrint(Deck *deck);
-void deckFisherYatesShuffle(Deck *deck);
-void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount);
-void deckRiffleShuffle(Deck *deck);
-void deckRiffleShuffleMany(Deck *deck, int shuffleAmount);
-void deckOverhandShuffle(Deck *deck);
-void deckOverheadShuffleMany(Deck *deck, int shuffleAmount);
-double deckCalculateDisplacement(Deck *original, Deck *shuffled);
-int deckLongestOrderedRun(Deck *original, Deck *shuffled);
-int deckCountAdjacentSuits(Deck *shuffled);
-int deckCountPreservedPairs(Deck *original, Deck *shuffled);
-void deckShufflingSumary(Deck *original, Deck *shuffled);
-int deckFindIndex(Deck *deck, Card card);
-void deckShuffle(Deck *deck, int shuffleAmount);
+/*Initialization*/
+void deckInit(Deck *const deck);
+void deckInitWithStrategy(Deck *const deck, void (*shuffleStrategy)(Deck *, int));
+
+/*Shuffling functions*/
+void deckShuffle(Deck *const deck, int shuffleAmount);
+void deckFisherYatesShuffle(Deck *const deck);
+void deckRiffleShuffle(Deck *const deck);
+void deckOverhandShuffle(Deck *const deck);
+void deckFisherYatesShuffleMany(Deck *const deck, int shuffleAmount);
+void deckRiffleShuffleMany(Deck *const deck, int shuffleAmount);
+void deckOverheadShuffleMany(Deck *const deck, int shuffleAmount);
+
+/*Shuffling metrics*/
+double deckCalculateDisplacement(const Deck *const original, const Deck *const shuffled);
+int deckLongestOrderedRun(const Deck *const original, const Deck *const shuffled);
+int deckCountAdjacentSuits(const Deck *const shuffled);
+int deckCountPreservedPairs(const Deck *const original, const Deck *const shuffled);
+void deckShufflingSumary(const Deck *const original, const Deck *const shuffled);
+
+/*Utils*/
+void deckPrint(const Deck *const deck);
+int deckFindIndex(const Deck *const deck, Card card);
 
 #endif
