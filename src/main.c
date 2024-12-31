@@ -3,7 +3,6 @@
 #include <time.h>
 
 #include "deck.h"
-#include "shuffle.h"
 
 int main()
 {
