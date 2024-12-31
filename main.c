@@ -37,6 +37,7 @@ int main()
 
     deckInit(&shuffledDeck);
     deckRiffleShuffle(&shuffledDeck);
+    printf("After single riffle shuffle: \n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
