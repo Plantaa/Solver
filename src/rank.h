@@ -17,7 +17,6 @@ typedef enum rank {
     FOUR,
     TRHEE,
     TWO,
-    ONE
 }Rank;
 
 char* rankString(Rank rank);
