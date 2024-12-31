@@ -10,9 +10,11 @@
 typedef struct deck
 {
     Card cards[MAX_CARDS];
+    void (*shuffleStrategy)(struct deck *deck, int shuffleAmount);
 } Deck;
 
 void deckInit(Deck *deck);
+void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy) (Deck *, int));
 void deckPrint(Deck *deck);
 void deckFisherYatesShuffle(Deck *deck);
 void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount);
@@ -26,5 +28,6 @@ int deckCountAdjacentSuits(Deck *shuffled);
 int deckCountPreservedPairs(Deck *original, Deck *shuffled);
 void deckShufflingSumary(Deck *original, Deck *shuffled);
 int deckFindIndex(Deck *deck, Card card);
+void deckShuffle(Deck *deck, int shuffleAmount);
 
 #endif

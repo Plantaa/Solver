@@ -27,8 +27,8 @@ int main()
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
-    deckOverheadShuffleMany(&shuffledDeck, 12);
-    printf("After 12 overhand shuffles: \n");
+    deckOverheadShuffleMany(&shuffledDeck, 13);
+    printf("After 13 overhand shuffles: \n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
@@ -39,6 +39,11 @@ int main()
     deckInit(&shuffledDeck);
     deckRiffleShuffleMany(&shuffledDeck, 7);
     printf("After 7 riffle shuffles: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckInitWithStrategy(&shuffledDeck, deckFisherYatesShuffleMany);
+    deckShuffle(&shuffledDeck, 1);
+    printf("After shuffle with strategy:\n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     return 0;

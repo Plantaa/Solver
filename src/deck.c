@@ -13,6 +13,15 @@ void deckInit(Deck *deck)
                 .suit = suit};
 }
 
+void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy) (Deck *, int))
+{
+    if (NULL == shuffleStrategy)
+        deck->shuffleStrategy = deckOverheadShuffleMany;
+    else
+        deck->shuffleStrategy = shuffleStrategy;
+    deckInit(deck);
+}
+
 void deckPrint(Deck *deck)
 {
     for (int i = 0; i < MAX_CARDS; i++)
@@ -144,4 +153,12 @@ void deckShufflingSumary(Deck *original, Deck *shuffled)
     printf("\tLongest ordered run: %d\n", deckLongestOrderedRun(original, shuffled));
     printf("\tAdjacent cards from the same suit: %d\n", deckCountAdjacentSuits(shuffled));
     printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
+}
+
+void deckShuffle(Deck* deck, int shuffleAmount)
+{
+    if (deck->shuffleStrategy != NULL)
+        deck->shuffleStrategy(deck, shuffleAmount);
+    else
+        printf("No shuffle strategy provided!\n");
 }
