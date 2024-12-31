@@ -14,3 +14,13 @@ char* suitString(Suit suit)
     default: return "";
     }
 }
+
+bool suitIsLesser(Suit expected, Suit actual)
+{
+    return expected < actual;
+}
+
+bool suitIsGreater(Suit expected, Suit actual)
+{
+    return expected > actual;
+}

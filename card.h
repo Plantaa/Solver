@@ -14,5 +14,7 @@ typedef struct card
 
 void cardPrint(Card card);
 bool cardIsEqual(Card expected, Card actual);
+bool cardIsLesser(Card expected, Card actual);
+bool cardIsGreater(Card expected, Card actual);
 
 #endif

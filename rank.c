@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "rank.h"
 
@@ -22,4 +23,14 @@ char* rankString(Rank rank)
     case TWO: return "TWO";
     default: return "";
     }
+}
+
+bool rankIsLesser(Rank expected, Rank actual)
+{
+    return expected < actual;
+}
+
+bool rankIsGreater(Rank expected, Rank actual)
+{
+    return expected > actual;
 }
