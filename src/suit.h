@@ -3,14 +3,15 @@
 
 #include <stdbool.h>
 
-typedef enum suit {
+typedef enum suit
+{
     CLUBS,
     HEARTS,
     SPADES,
     DIAMONDS
-}Suit;
+} Suit;
 
-char* suitString(Suit suit);
+char *suitString(Suit suit);
 bool suitIsLesser(Suit expected, Suit actual);
 bool suitIsGreater(Suit expected, Suit actual);
 

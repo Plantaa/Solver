@@ -14,7 +14,7 @@ typedef struct deck
 } Deck;
 
 void deckInit(Deck *deck);
-void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy) (Deck *, int));
+void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int));
 void deckPrint(Deck *deck);
 void deckFisherYatesShuffle(Deck *deck);
 void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount);

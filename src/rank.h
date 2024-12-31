@@ -3,7 +3,8 @@
 
 #include <stdbool.h>
 
-typedef enum rank {
+typedef enum rank
+{
     ACE,
     KING,
     QUEEN,
@@ -17,9 +18,9 @@ typedef enum rank {
     FOUR,
     TRHEE,
     TWO,
-}Rank;
+} Rank;
 
-char* rankString(Rank rank);
+char *rankString(Rank rank);
 bool rankIsLesser(Rank expected, Rank actual);
 bool rankIsGreater(Rank expected, Rank actual);
 

@@ -13,7 +13,7 @@ void deckInit(Deck *deck)
                 .suit = suit};
 }
 
-void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy) (Deck *, int))
+void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int))
 {
     if (NULL == shuffleStrategy)
         deck->shuffleStrategy = deckOverheadShuffleMany;
@@ -99,51 +99,59 @@ void deckOverheadShuffleMany(Deck *deck, int shuffleAmount)
         deckOverhandShuffle(deck);
 }
 
-double deckCalculateDisplacement(Deck *original, Deck *shuffled) {
+double deckCalculateDisplacement(Deck *original, Deck *shuffled)
+{
     double totalDisplacement = 0;
     for (int i = 0; i < MAX_CARDS; i++)
         totalDisplacement += abs(i - deckFindIndex(shuffled, original->cards[i]));
     return totalDisplacement / MAX_CARDS;
 }
 
-int deckFindIndex(Deck *deck, Card card) {
+int deckFindIndex(Deck *deck, Card card)
+{
     for (int i = 0; i < MAX_CARDS; i++)
         if (cardIsEqual(deck->cards[i], card))
             return i;
     return -1;
 }
 
-int deckLongestOrderedRun(Deck *original, Deck *shuffled) {
+int deckLongestOrderedRun(Deck *original, Deck *shuffled)
+{
     int longestRun = 0;
     int currentRun = 0;
 
-    for (int i = 0; i < MAX_CARDS; i++) {
-        if (cardIsEqual(original->cards[i], shuffled->cards[i])) {
+    for (int i = 0; i < MAX_CARDS; i++)
+    {
+        if (cardIsEqual(original->cards[i], shuffled->cards[i]))
+        {
             currentRun++;
             if (currentRun > longestRun)
                 longestRun = currentRun;
-        } else
+        }
+        else
             currentRun = 0;
     }
     return longestRun;
 }
 
-int deckCountAdjacentSuits(Deck *shuffled) {
+int deckCountAdjacentSuits(Deck *shuffled)
+{
     int adjacentCount = 0;
     for (int i = 0; i < MAX_CARDS - 1; i++)
-        if (shuffled->cards[i].suit == shuffled->cards[i+1].suit)
+        if (shuffled->cards[i].suit == shuffled->cards[i + 1].suit)
             adjacentCount++;
     return adjacentCount;
 }
 
-int deckCountPreservedPairs(Deck *original, Deck *shuffled) {
+int deckCountPreservedPairs(Deck *original, Deck *shuffled)
+{
     int preservedPairs = 0;
     for (int i = 0; i < MAX_CARDS - 1; i++)
         for (int j = i + 1; j < MAX_CARDS; j++)
             if (deckFindIndex(shuffled, original->cards[i]) < deckFindIndex(shuffled, original->cards[j]))
-                    preservedPairs++;
+                preservedPairs++;
     return preservedPairs;
-} 
+}
 
 void deckShufflingSumary(Deck *original, Deck *shuffled)
 {
@@ -154,7 +162,7 @@ void deckShufflingSumary(Deck *original, Deck *shuffled)
     printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
 }
 
-void deckShuffle(Deck* deck, int shuffleAmount)
+void deckShuffle(Deck *deck, int shuffleAmount)
 {
     if (deck->shuffleStrategy != NULL)
         deck->shuffleStrategy(deck, shuffleAmount);

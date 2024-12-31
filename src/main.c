@@ -32,6 +32,11 @@ int main()
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     deckInit(&shuffledDeck);
+    deckOverheadShuffleMany(&shuffledDeck, 14);
+    printf("After 14 overhand shuffles: \n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckInit(&shuffledDeck);
     deckRiffleShuffle(&shuffledDeck);
     printf("After single riffle shuffle: \n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
