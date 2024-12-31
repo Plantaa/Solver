@@ -99,7 +99,6 @@ void deckOverheadShuffleMany(Deck *deck, int shuffleAmount)
         deckOverhandShuffle(deck);
 }
 
-// Calculate average displacement
 double deckCalculateDisplacement(Deck *original, Deck *shuffled) {
     double totalDisplacement = 0;
     for (int i = 0; i < MAX_CARDS; i++)
