@@ -5,7 +5,8 @@
 
 void cardPrint(Card card)
 {
-    printf("%s of %s\n", rankString(card.rank), suitString(card.suit));
+    if (cardIsEqual(INVALID_CARD, card)) printf("INVALID CARD\n");
+    else printf("%s of %s\n", rankString(card.rank), suitString(card.suit));
 }
 
 bool cardIsEqual(Card expected, Card actual)
