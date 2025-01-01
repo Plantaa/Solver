@@ -24,19 +24,22 @@ int main()
     tablePlayerCardsPrint(&table);
 
     tableFlopDeal(&table);
-    tableCommunalsPrint(&table);
-
     tableTurnDeal(&table);
-    tableCommunalsPrint(&table);
-
     tableRiverDeal(&table);
     tableCommunalsPrint(&table);
     
     referenceDeck = table.deck;
     tableReset(&table);
-    tableCommunalsPrint(&table);
     tableDeckShuffle(&table);
     deckShufflingSumary(&referenceDeck, &table.deck);
+
+    tablePlayerCardsDeal(&table);
+    tablePlayerCardsPrint(&table);
+
+    tableFlopDeal(&table);
+    tableTurnDeal(&table);
+    tableRiverDeal(&table);
+    tableCommunalsPrint(&table);
 
     return 0;
 }
