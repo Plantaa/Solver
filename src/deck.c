@@ -82,7 +82,7 @@ int deckCountPreservedPairs(const Deck *const original, const Deck *const shuffl
 
 void deckShufflingSumary(const Deck *const original, const Deck *const shuffled)
 {
-    printf("Shuffling summary:\n");
+    printf("\nShuffling summary:\n");
     printf("\tDispacement: %f\n", deckCalculateDisplacement(original, shuffled));
     printf("\tLongest ordered run: %d\n", deckLongestOrderedRun(original, shuffled));
     printf("\tAdjacent cards from the same suit: %d\n", deckCountAdjacentSuits(shuffled));
