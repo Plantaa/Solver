@@ -16,10 +16,7 @@ void deckInit(Deck *const deck)
 
 void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy)
 {
-    if (NULL != shuffleStrategy)
         deck->shuffleStrategy = shuffleStrategy;
-    else
-        printf("WARNING: Deck initialized with explicit NULL strategy");
     deckInit(deck);
 }
 
