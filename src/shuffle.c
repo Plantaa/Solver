@@ -8,9 +8,7 @@
 void shuffle(Card *const cards, ShuffleStrategy strategy)
 {
     for (int i = 0; i < strategy.iterations; i++)
-    {
         strategy.shuffle(cards);
-    }
 }
 
 void shuffleMany(Card *const cards, ShuffleStrategy strategy, int iterations)
