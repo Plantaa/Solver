@@ -11,6 +11,7 @@ void deckInit(Deck *const deck)
             deck->cards[card++] = (Card){
                 .rank = rank,
                 .suit = suit};
+    deck->top = 0;
 }
 
 void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy)
@@ -103,4 +104,15 @@ void deckShuffleMany(Deck *const deck, int iterations)
             deckShuffle(deck);
     else
         printf("No shuffle strategy provided! Deck remains in original state\n");
+}
+
+Card deckDrawFromTop(Deck *const deck)
+{
+    if (deck->top >= MAX_CARDS)
+    {
+        printf("Deck is empty!\n");
+        return INVALID_CARD;
+    } else {
+        return deck->cards[deck->top++];
+    }
 }

@@ -10,6 +10,7 @@
 
 typedef struct deck
 {
+    int top;
     Card cards[MAX_CARDS];
     ShuffleStrategy shuffleStrategy;
 } Deck;
@@ -30,6 +31,7 @@ int deckCountPreservedPairs(const Deck *const original, const Deck *const shuffl
 void deckShufflingSumary(const Deck *const original, const Deck *const shuffled);
 
 /*Utils*/
+Card deckDrawFromTop(Deck *const deck);
 void deckPrint(const Deck *const deck);
 int deckFindIndex(const Deck *const deck, Card card);
 
