@@ -2,6 +2,26 @@
 
 #include "table.h"
 
+void tableInit(Table *const table)
+{
+    table->cardsOnTable = 0;
+    deckInit(&table->deck);
+}
+
+void tableInitWithShuffleStrategy(Table *const table, ShuffleStrategy shuffleStrategy)
+{
+    table->deck.shuffleStrategy = shuffleStrategy;
+    tableInit(table);
+}
+
+void tableDeckShuffle(Table *const table)
+{
+    for (int i = 0; i < table->deck.shuffleStrategy.iterations; i++)
+    {
+        table->deck.shuffleStrategy.shuffle(table->deck.cards);
+    }
+}
+
 void tablePlayerCardsDeal(Table *const table)
 {
     for (int i = 0; i < HAND_SIZE; i++)

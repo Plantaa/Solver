@@ -16,7 +16,7 @@ void deckInit(Deck *const deck)
 
 void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy)
 {
-        deck->shuffleStrategy = shuffleStrategy;
+    deck->shuffleStrategy = shuffleStrategy;
     deckInit(deck);
 }
 
@@ -91,16 +91,14 @@ void deckShufflingSumary(const Deck *const original, const Deck *const shuffled)
 
 void deckShuffle(Deck *const deck)
 {
-    deck->shuffleStrategy(deck->cards);
+    for (int i = 0; i < deck->shuffleStrategy.iterations; i++)
+        deck->shuffleStrategy.shuffle(deck->cards);
 }
 
 void deckShuffleMany(Deck *const deck, int iterations)
 {
-    if (deck->shuffleStrategy != NULL)
-        for (int i = 0; i < iterations; i++)
-            deckShuffle(deck);
-    else
-        printf("No shuffle strategy provided! Deck remains in original state\n");
+    for (int i = 0; i < iterations; i++)
+        deckShuffle(deck);
 }
 
 Card deckDrawFromTop(Deck *const deck)

@@ -18,6 +18,11 @@ typedef struct table
     int cardsOnTable;
 } Table;
 
+void tableInit(Table *const table);
+void tableInitWithShuffleStrategy(Table *const table, ShuffleStrategy shuffleStrategy);
+
+void tableDeckShuffle(Table *const table);
+
 /*Dealing*/
 void tablePlayerCardsDeal(Table *const table);
 void tableFlopDeal(Table *const table);

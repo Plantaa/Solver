@@ -3,7 +3,11 @@
 
 #include "card.h"
 
-typedef void (*ShuffleStrategy)(Card *const cards);
+typedef struct shuffleStrategy
+{
+    void (*shuffle)(Card *const cards);
+    int iterations;
+} ShuffleStrategy;
 
 void shuffle(Card *const cards, ShuffleStrategy strategy);
 void shuffleMany(Card *const cards, ShuffleStrategy strategy, int iterations);

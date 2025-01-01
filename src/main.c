@@ -8,23 +8,35 @@ int main()
 {
     srand((unsigned int)time(0));
 
-    Deck originalDeck;
-    deckInit(&originalDeck);
+    Deck referenceDeck;
+    deckInit(&referenceDeck);
 
     Table table;
-    deckInitWithStrategy(&table.deck, fisherYatesShuffle);
-    deckShuffle(&table.deck);
-    deckShufflingSumary(&originalDeck, &table.deck);
+    ShuffleStrategy tableDeckShuffleStrategy = {
+        .shuffle = riffleShuffle,
+        .iterations = 7
+    };
+    tableInitWithShuffleStrategy(&table, tableDeckShuffleStrategy);
+    tableDeckShuffle(&table);
+    deckShufflingSumary(&referenceDeck, &table.deck);
+
     tablePlayerCardsDeal(&table);
     tablePlayerCardsPrint(&table);
+
     tableFlopDeal(&table);
     tableCommunalsPrint(&table);
+
     tableTurnDeal(&table);
     tableCommunalsPrint(&table);
+
     tableRiverDeal(&table);
     tableCommunalsPrint(&table);
+    
+    referenceDeck = table.deck;
     tableReset(&table);
     tableCommunalsPrint(&table);
+    tableDeckShuffle(&table);
+    deckShufflingSumary(&referenceDeck, &table.deck);
 
     return 0;
 }
