@@ -5,12 +5,13 @@
 
 void cardPrint(Card card)
 {
-    printf("%s of %s\n", rankString(card.rank), suitString(card.suit));
+    if (cardIsEqual(INVALID_CARD, card)) printf("INVALID CARD\n");
+    else printf("%s of %s\n", rankString(card.rank), suitString(card.suit));
 }
 
 bool cardIsEqual(Card expected, Card actual)
 {
-    return expected.rank == actual.rank && expected.suit == actual.suit;
+    return rankIsEqual(expected.rank, actual.rank) && suitIsEqual(expected.suit, actual.suit);
 }
 
 bool cardIsLesser(Card expected, Card actual)

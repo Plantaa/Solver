@@ -15,6 +15,11 @@ char* suitString(Suit suit)
     }
 }
 
+bool suitIsEqual(Suit expected, Suit actual)
+{
+    return expected == actual;
+}
+
 bool suitIsLesser(Suit expected, Suit actual)
 {
     return expected < actual;

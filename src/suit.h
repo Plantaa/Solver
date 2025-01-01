@@ -12,6 +12,7 @@ typedef enum suit
 } Suit;
 
 char *suitString(Suit suit);
+bool suitIsEqual(Suit expected, Suit actual);
 bool suitIsLesser(Suit expected, Suit actual);
 bool suitIsGreater(Suit expected, Suit actual);
 

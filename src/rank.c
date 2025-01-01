@@ -25,6 +25,11 @@ char* rankString(Rank rank)
     }
 }
 
+bool rankIsEqual(Rank expected, Rank actual)
+{
+    return expected == actual;
+}
+
 bool rankIsLesser(Rank expected, Rank actual)
 {
     return expected < actual;

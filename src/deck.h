@@ -2,6 +2,7 @@
 #define DECK_H_
 
 #include "card.h"
+#include "shuffle.h"
 
 #define MAX_CARDS 52
 #define MAX_SUIT 4
@@ -9,25 +10,29 @@
 
 typedef struct deck
 {
+    int top;
     Card cards[MAX_CARDS];
-    void (*shuffleStrategy)(struct deck *deck, int shuffleAmount);
+    ShuffleStrategy shuffleStrategy;
 } Deck;
 
-void deckInit(Deck *deck);
-void deckInitWithStrategy(Deck *deck, void (*shuffleStrategy)(Deck *, int));
-void deckPrint(Deck *deck);
-void deckFisherYatesShuffle(Deck *deck);
-void deckFisherYatesShuffleMany(Deck *deck, int shuffleAmount);
-void deckRiffleShuffle(Deck *deck);
-void deckRiffleShuffleMany(Deck *deck, int shuffleAmount);
-void deckOverhandShuffle(Deck *deck);
-void deckOverheadShuffleMany(Deck *deck, int shuffleAmount);
-double deckCalculateDisplacement(Deck *original, Deck *shuffled);
-int deckLongestOrderedRun(Deck *original, Deck *shuffled);
-int deckCountAdjacentSuits(Deck *shuffled);
-int deckCountPreservedPairs(Deck *original, Deck *shuffled);
-void deckShufflingSumary(Deck *original, Deck *shuffled);
-int deckFindIndex(Deck *deck, Card card);
-void deckShuffle(Deck *deck, int shuffleAmount);
+/*Initialization*/
+void deckInit(Deck *const deck);
+void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy);
+
+/*Shuffle*/
+void deckShuffle(Deck *const deck);
+void deckShuffleMany(Deck *const deck, int iterations);
+
+/*Shuffling metrics*/
+double deckCalculateDisplacement(const Deck *const original, const Deck *const shuffled);
+int deckLongestOrderedRun(const Deck *const original, const Deck *const shuffled);
+int deckCountAdjacentSuits(const Deck *const shuffled);
+int deckCountPreservedPairs(const Deck *const original, const Deck *const shuffled);
+void deckShufflingSumary(const Deck *const original, const Deck *const shuffled);
+
+/*Utils*/
+Card deckDrawFromTop(Deck *const deck);
+void deckPrint(const Deck *const deck);
+int deckFindIndex(const Deck *const deck, Card card);
 
 #endif
