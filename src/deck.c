@@ -15,10 +15,10 @@ void deckInit(Deck *const deck)
 
 void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy)
 {
-    if (NULL == shuffleStrategy)
-        deck->shuffleStrategy = fisherYatesShuffleMany;
-    else
+    if (NULL != shuffleStrategy)
         deck->shuffleStrategy = shuffleStrategy;
+    else
+        printf("WARNING: Deck initialized with explicit NULL strategy");
     deckInit(deck);
 }
 
@@ -91,10 +91,16 @@ void deckShufflingSumary(const Deck *const original, const Deck *const shuffled)
     printf("\tPreserved relative pairs: %d\n", deckCountPreservedPairs(original, shuffled));
 }
 
-void deckShuffle(Deck *const deck, int iterations)
+void deckShuffle(Deck *const deck)
+{
+    deck->shuffleStrategy(deck->cards);
+}
+
+void deckShuffleMany(Deck *const deck, int iterations)
 {
     if (deck->shuffleStrategy != NULL)
-        deck->shuffleStrategy(deck->cards, iterations);
+        for (int i = 0; i < iterations; i++)
+            deckShuffle(deck);
     else
-        printf("No shuffle strategy provided!\n");
+        printf("No shuffle strategy provided! Deck remains in original state\n");
 }

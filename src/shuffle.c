@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_CARDS 52
+
 #include "shuffle.h"
 
-void shuffle(Card *const cards, ShuffleStrategy strategy, int iterations)
+void shuffle(Card *const cards, ShuffleStrategy strategy)
 {
-    if (strategy != NULL)
-        strategy(cards, iterations);
-    else
-        printf("No shuffle strategy provided!\n");
+    strategy(cards);
+}
+
+void shuffleMany(Card *const cards, ShuffleStrategy strategy, int iterations)
+{
+    for (int i = 0; i < iterations; i++)
+        shuffle(cards, strategy);
 }
 
 void fisherYatesShuffle(Card *const cards)
 {
-    for (int i = 52 - 1; i > 0; i--)
+    for (int i = MAX_CARDS - 1; i > 0; i--)
     {
         int j = rand() % (i + 1);
         Card temp = cards[i];
@@ -24,8 +29,8 @@ void fisherYatesShuffle(Card *const cards)
 
 void riffleShuffle(Card *const cards)
 {
-    Card half1[52], half2[52];
-    int halfSize = 52 / 2;
+    Card half1[MAX_CARDS], half2[MAX_CARDS];
+    int halfSize = MAX_CARDS / 2;
 
     for (int i = 0; i < halfSize; i++)
     {
@@ -48,19 +53,19 @@ void riffleShuffle(Card *const cards)
 
 void overhandShuffle(Card *const cards)
 {
-    Card newDeck[52];
+    Card newDeck[MAX_CARDS];
     int newDeckIndex = 0;
 
-    while (newDeckIndex < 52)
+    while (newDeckIndex < MAX_CARDS)
     {
         int chunkSize = (rand() % 5) + 1;
-        if (newDeckIndex + chunkSize > 52)
-            chunkSize = 52 - newDeckIndex;
+        if (newDeckIndex + chunkSize > MAX_CARDS)
+            chunkSize = MAX_CARDS - newDeckIndex;
         for (int i = 0; i < chunkSize; i++)
-            newDeck[newDeckIndex + i] = cards[52 - newDeckIndex - chunkSize + i];
+            newDeck[newDeckIndex + i] = cards[MAX_CARDS - newDeckIndex - chunkSize + i];
         newDeckIndex += chunkSize;
     }
-    for (int i = 0; i < 52; i++)
+    for (int i = 0; i < MAX_CARDS; i++)
         cards[i] = newDeck[i];
 }
 
@@ -76,7 +81,7 @@ void riffleShuffleMany(Card *const cards, int iterations)
         riffleShuffle(cards);
 }
 
-void overheadShuffleMany(Card *const cards, int iterations)
+void overhandShuffleMany(Card *const cards, int iterations)
 {
     for (int i = 0; i < iterations; i++)
         overhandShuffle(cards);

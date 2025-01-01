@@ -18,6 +18,10 @@ typedef struct deck
 void deckInit(Deck *const deck);
 void deckInitWithStrategy(Deck *const deck, ShuffleStrategy shuffleStrategy);
 
+/*Shuffle*/
+void deckShuffle(Deck *const deck);
+void deckShuffleMany(Deck *const deck, int iterations);
+
 /*Shuffling metrics*/
 double deckCalculateDisplacement(const Deck *const original, const Deck *const shuffled);
 int deckLongestOrderedRun(const Deck *const original, const Deck *const shuffled);

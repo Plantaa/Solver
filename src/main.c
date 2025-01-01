@@ -10,21 +10,35 @@ int main()
 
     Deck originalDeck, shuffledDeck;
     deckInit(&originalDeck);
+
     deckInit(&shuffledDeck);
-
-    deckInitWithStrategy(&shuffledDeck, fisherYatesShuffleMany);
-    shuffle(shuffledDeck.cards, shuffledDeck.shuffleStrategy, 1);
-    printf("After shuffle with strategy:\n");
+    fisherYatesShuffle(shuffledDeck.cards);
+    printf("After single Fisher-Yates shuffle:\n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
-    deckInitWithStrategy(&shuffledDeck, riffleShuffleMany);
-    shuffle(shuffledDeck.cards, shuffledDeck.shuffleStrategy, 1);
-    printf("After shuffle with strategy:\n");
+    deckInit(&shuffledDeck);
+    fisherYatesShuffleMany(shuffledDeck.cards, 7);
+    printf("After 7 Fisher-Yates shuffles:\n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
-    deckInitWithStrategy(&shuffledDeck, overheadShuffleMany);
-    shuffle(shuffledDeck.cards, shuffledDeck.shuffleStrategy, 1);
-    printf("After shuffle with strategy:\n");
+    deckInitWithStrategy(&shuffledDeck, overhandShuffle);
+    deckShuffle(&shuffledDeck);
+    printf("After single overhand shuffle with strategy:\n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckInitWithStrategy(&shuffledDeck, overhandShuffle);
+    deckShuffleMany(&shuffledDeck, 7);
+    printf("After 7 overhand shuffles with strategy:\n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckInit(&shuffledDeck);
+    shuffle(shuffledDeck.cards, riffleShuffle);
+    printf("After single riffle shuffle with strategy:\n");
+    deckShufflingSumary(&originalDeck, &shuffledDeck);
+
+    deckInit(&shuffledDeck);
+    shuffleMany(shuffledDeck.cards, riffleShuffle, 7);
+    printf("After 7 riffle shuffles with strategy:\n");
     deckShufflingSumary(&originalDeck, &shuffledDeck);
 
     return 0;
