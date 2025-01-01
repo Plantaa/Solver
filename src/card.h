@@ -6,6 +6,8 @@
 #include "rank.h"
 #include "suit.h"
 
+#define INVALID_CARD (Card){-1,-1}
+
 typedef struct card
 {
     Rank rank;
