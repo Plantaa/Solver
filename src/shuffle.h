@@ -18,4 +18,4 @@ void fisherYatesShuffleMany(Card *const cards, int iterations);
 void riffleShuffleMany(Card *const cards, int iterations);
 void overhandShuffleMany(Card *const cards, int iterations);
 
-#endif
+#endif //SHUFFLE_H_

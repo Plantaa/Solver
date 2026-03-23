@@ -78,6 +78,17 @@ void tableRiverDeal(Table *const table)
     table->cardsOnTable = RIVER;
 }
 
+void burnCard(Table *const table)
+{
+    Card discard = deckDrawFromTop(&table->deck);
+    if (cardIsEqual(INVALID_CARD, discard))
+    {
+        printf("Burn incomplete\n");
+        return;
+    }
+    
+}
+
 void tablePlayerCardsPrint(const Table *const table)
 {
     for (int i = 0; i < MAX_PLAYERS; i++)

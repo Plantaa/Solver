@@ -27,9 +27,13 @@ int main()
     tableTurnDeal(&table);
     tableRiverDeal(&table);
     tableCommunalsPrint(&table);
-    
+
     referenceDeck = table.deck;
     tableReset(&table);
+    table.deck.shuffleStrategy = (ShuffleStrategy){
+        .shuffle = fisherYatesShuffle,
+        .iterations = 10
+    };
     tableDeckShuffle(&table);
     deckShufflingSumary(&referenceDeck, &table.deck);
 

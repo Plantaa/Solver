@@ -28,6 +28,7 @@ void tablePlayerCardsDeal(Table *const table);
 void tableFlopDeal(Table *const table);
 void tableTurnDeal(Table *const table);
 void tableRiverDeal(Table *const table);
+void burnCard(Table *const table);
 
 /*Printing*/
 void tablePlayerCardsPrint(const Table *const table);
